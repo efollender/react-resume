@@ -8,6 +8,20 @@ let Experience = React.createClass({
 				<h3>Experience</h3>
 				<div className="experience-section featured">
 					<ExperienceBlock
+						company="Brooklyn United"
+						title="Web Developer"
+						date="December 2014-present"
+						description="As a developer at Brooklyn United, I work closely
+						 	with the design team to produce highly responsive sites that
+						 	leverage experimental design concepts. Most recently, I built
+						 	a custom Wordpress blog using Twig, Gulp, and Stylus. Internal
+						 	projects include an API built with Node and React to control 
+						 	the office Spotify account and output to a Raspberry Pi that
+						 	we connected to speakers."
+					/>
+				</div>
+				<div className="experience-section featured">
+					<ExperienceBlock
 						company="Makersquare"
 						title="Immersive Software Engineering Student"
 						date="July 2014-October 2014"
