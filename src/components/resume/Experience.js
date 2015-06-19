@@ -11,12 +11,12 @@ let Experience = React.createClass({
 						company="Makersquare"
 						title="Immersive Software Engineering Student"
 						date="July 2014-October 2014"
-						description="I chose to attend Maker Square, a 1 2-week
+						description="I chose to attend Maker Square, a 12-week
 							accelerated learning program that teaches
-							modern web appl ication development, to
-							improve my skil lset and my efficiency as a
+							modern web application development, to
+							improve my skillset and my efficiency as a
 							developer. During the program, I
-							developed multiple appl ications that
+							developed multiple applications that
 							employed the use of Sass, Bootstrap,
 							Foundation, and AngularJs. While I worked
 							with backend technologies including

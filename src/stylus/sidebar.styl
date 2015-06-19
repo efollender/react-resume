@@ -17,6 +17,48 @@
 	h3
 		color white
 		margin 0
+		display inline-block
+.sidebar-skill-list-wrapper
+	display inline-block
+	overflow hidden
+	max-height 5000px
+	transition all 1s ease-in-out
+	&.collapsed
+		max-height 0
+		float left
+.skill-title
+	width 50%
+	display inline-block
+	color $shade2
+	font-variant small-caps
+	text-align right
+	padding 0 .5em
+	font-size 1.3rem
+	@media all and (max-width:$break3)
+		font-size 1.1rem
+		padding 0.25em
+	@media all and (max-width:$break4)
+		width 100%
+		text-align left
+.skill-java-wrapper
+	width 50%
+	display inline-block
+	// @media all and (max-width:$break3)
+	@media all and (max-width:$break4)
+		padding 0 .25em
+		width 100%
+.coffee-svg-wrapper
+	width (1/6 * 100)%
+	display inline-block
+	svg
+		height 100%
+		width 100%
+		fill $shade2
+		// @media all and (max-width:$break4)
+		// 	fill rgba($shade2, .3)
+	&.unshaded
+		svg
+			fill rgba($shade2, .3)
 .sidebar-education-title
 	width 100%
 	background $shade3
@@ -33,3 +75,9 @@
 	h3
 		color white
 		margin 0
+//Utilities
+.toggle-button
+	display inline-block
+	float right
+	color white
+	line-height 1.5em

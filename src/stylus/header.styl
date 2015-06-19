@@ -10,6 +10,27 @@
 		display inline-block
 		font-weight lighter
 	h2
-		margin-left 2rem
 		font-weight lighter
 		display inline-block
+.header-title-separator
+	display inline-block
+	transform rotate(-30deg)
+	margin 0 1.5em 0 1em
+	&:before
+		content: ''
+		width: .15em
+		height: 1.5em
+		background-color: white
+		display: inline-block
+		top: .25em
+		position: relative
+		margin-right .25em
+	&:after
+		content: ''
+		width: .15em
+		height: 1.5em
+		background-color: white
+		display: inline-block
+		top: .25em
+		position: relative
+		// left 2em
