@@ -6,8 +6,7 @@ let Experience = React.createClass({
 		return (
 			<div className="experience-wrapper">
 				<h3>Experience</h3>
-				<div className="experience-section featured">
-					<ExperienceBlock
+				<ExperienceBlock
 						company="Brooklyn United"
 						title="Web Developer"
 						date="December 2014-present"
@@ -18,10 +17,16 @@ let Experience = React.createClass({
 						 	projects include an API built with Node and React to control 
 						 	the office Spotify account and output to a Raspberry Pi that
 						 	we connected to speakers."
+						featuredProject='<a href="http://doggerel.arup.com" class="project-link">
+							doggerel.arup.com</a><br/>
+							Developed a custom Wordpress theme for the global engineering firm, Arup.
+							Each page template incorporated multiple dynamic components. Analytics were used to determine and
+							display popular articles. The theme involved heavy use of custom post types and meta fields. Build
+							tools included Twig, Gulp, and Stylus.<br/>
+							<strong>Featured on</strong>: <a href="http://www.cssawds.com/website/doggerel/">
+							http://www.cssawds.com/website/doggerel/</a>'
 					/>
-				</div>
-				<div className="experience-section featured">
-					<ExperienceBlock
+				<ExperienceBlock
 						company="Makersquare"
 						title="Immersive Software Engineering Student"
 						date="July 2014-October 2014"
@@ -37,8 +42,17 @@ let Experience = React.createClass({
 							PostgreSQL and MongoDB, I focused
 							primarily on front-end development with
 							Javascript and JS frameworks."
+						featuredProject='<a href="https://github.com/dkellis42/COdeWORK" class="project-link">
+							CO(de)WORK</a><br/>
+							An app that connects coders to other coders nearby, 
+							based on their areas of expertise, location, and
+							problems they may need some guidance solving. Built on MongoDB, 
+							Express, AngularJS, and Node.JS, and integrates the Google Maps API, 
+							Foursquare API, Socket.IO and Pubnub. I created mock-ups which 
+							I translated into code, using Sass for styling and Angular for 
+							dynamic templating. I integrated all APIs and wrote 
+							front-end Javascript.'
 					/>
-				</div>
 				<ExperienceBlock
 						company="Scarinci Hollenbeck"
 						title="Web Developer"
@@ -46,12 +60,12 @@ let Experience = React.createClass({
 						description="Redesigned the company website and wrote
 							a custom responsive Wordpress template for
 							it.
-							&nbsp;
+							<br/><br/>
 							Converted previous designs into modern
 							UX/UI experiences, and static HTML pages
 							into dynamically populated views using PHP
 							templating.
-							&nbsp;
+							<br/><br/>
 							Went through the same process for multiple
 							company blogs and minisites."
 					/>
@@ -62,10 +76,10 @@ let Experience = React.createClass({
 						description="Designed graphics and ads including
 							one for Gotham Magazine, using
 							Creative Suite.
-							&nbsp;
+							<br/><br/>
 							Transferred of content from the old
 							site design to the new one.
-							&nbsp;
+							<br/><br/>
 							Built out basic page layouts for the
 							new site using HTML and CSS."
 					/>
