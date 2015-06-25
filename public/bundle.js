@@ -23674,7 +23674,10 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Skill = __webpack_require__(202);
+	var Skills = __webpack_require__(210);
+	var Contact = __webpack_require__(211);
+	var Education = __webpack_require__(212);
+	var Recognition = __webpack_require__(213);
 
 	var Sidebar = React.createClass({
 		displayName: 'Sidebar',
@@ -23684,129 +23687,25 @@
 				collapse: false
 			};
 		},
-		collapseSkills: function collapseSkills() {
-			this.setState({
-				collapse: !this.state.collapse
+		collapseSkills: function collapseSkills(e) {
+			//e.preventDefault();
+			var skill = document.getElementsByClassName('sidebar-skill-list-wrapper');
+			[].slice.call(skill).forEach(function (el) {
+				if (el.getAttribute('class').split(' ').length > 1) {
+					el.setAttribute('class', 'sidebar-skill-list-wrapper');
+				} else {
+					el.setAttribute('class', 'sidebar-skill-list-wrapper collapsed');
+				}
 			});
 		},
 		render: function render() {
 			return React.createElement(
 				'div',
 				{ className: 'sidebar-wrapper' },
-				React.createElement(
-					'div',
-					{ className: 'sidebar-contact-info' },
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'a',
-							{ href: 'mailto:efollender@gmail.com' },
-							React.createElement('span', { className: 'entypo-mail' }),
-							' efollender@gmail.com'
-						)
-					),
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'a',
-							{ href: 'http://www.emmafollender.com' },
-							React.createElement('span', { className: 'entypo-monitor' }),
-							' www.emmafollender.com'
-						)
-					),
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'a',
-							{ href: 'http://github.com/efollender' },
-							React.createElement('span', { className: 'entypo-github' }),
-							' http://github.com/efollender'
-						)
-					),
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'a',
-							{ href: 'http://twitter.com/efollender' },
-							React.createElement('span', { className: 'entypo-twitter' }),
-							' @efollender'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'sidebar-skills' },
-					React.createElement(
-						'div',
-						{ className: 'sidebar-skills-title' },
-						React.createElement(
-							'h3',
-							null,
-							'Skills'
-						),
-						React.createElement('div', {
-							className: 'entypo-minus toggle-button',
-							onClick: this.collapseSkills
-						})
-					),
-					React.createElement(
-						'div',
-						{ className: this.state.collapse ? 'sidebar-skill-list-wrapper collapsed' : 'sidebar-skill-list-wrapper' },
-						React.createElement(Skill, { level: 5, title: 'jQuery' }),
-						React.createElement(Skill, { level: 2, title: 'AngularJs' }),
-						React.createElement(Skill, { level: 4, title: 'Javascript' }),
-						React.createElement(Skill, { level: 1, title: 'ReactJs' }),
-						React.createElement(Skill, { level: 5, title: 'Ruby' }),
-						React.createElement(Skill, { level: 3, title: 'CSS3' }),
-						React.createElement(Skill, { level: 5, title: 'HTML5' }),
-						React.createElement(Skill, { level: 5, title: 'Adobe CS' })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'sidebar-education' },
-					React.createElement(
-						'div',
-						{ className: 'sidebar-education-title' },
-						React.createElement(
-							'h3',
-							null,
-							'Education'
-						)
-					),
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'strong',
-							null,
-							'NYU Poly'
-						),
-						'2013,',
-						React.createElement(
-							'em',
-							null,
-							'Computer Science'
-						)
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'sidebar-recognition' },
-					React.createElement(
-						'div',
-						{ className: 'sidebar-recognition-title' },
-						React.createElement(
-							'h3',
-							null,
-							'Recognition'
-						)
-					)
-				)
+				React.createElement(Contact, null),
+				React.createElement(Skills, null),
+				React.createElement(Education, null),
+				React.createElement(Recognition, null)
 			);
 		}
 	});
@@ -24038,7 +23937,7 @@
 	exports = module.exports = __webpack_require__(208)();
 	exports.push([module.id, "@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);", ""]);
 	exports.push([module.id, "@import url(http://weloveiconfonts.com/api/?family=entypo);", ""]);
-	exports.push([module.id, "\n\n[class*=\"entypo-\"]:before {\n  font-family: 'entypo', sans-serif;\n}\nbody {\n  font-family: sans-serif;\n  font-smoothing: antialiased;\n  line-heght: 1.5em;\n}\na {\n  text-decoration: none;\n}\np {\n  font-weight: lighter;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Roboto Condensed', sans-serif;\n}\nh1,\nh2,\nh3 {\n  text-transform: uppercase;\n}\nh5 {\n  font-weight: lighter;\n}\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n.experience-wrapper {\n  width: 75%;\n  display: inline-block;\n  vertical-align: top;\n  padding: 1rem;\n  position: relative;\n}\n.experience-wrapper h3 {\n  color: #0f72c1;\n  margin-top: 0;\n}\n.experience-section {\n  width: 50%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section.featured {\n  width: 100%;\n}\n.experience-section.featured .experience-section-main {\n  width: 47%;\n  margin-right: 3%;\n  display: inline-block;\n}\n.experience-section.featured .experience-section-featured {\n  width: 50%;\n  display: inline-block;\n}\n.experience-section h4,\n.experience-section h5 {\n  margin: 0;\n}\n.experience-section .position-title {\n  margin: 0;\n  font-style: italic;\n}\n.experience-section .project-link {\n  color: #fff;\n  background: #ea2c21;\n  margin-bottom: 1em;\n  display: inline-block;\n  padding: 0.25em;\n  font-family: 'Roboto Condensed', sans-serif;\n}\n.header-wrapper {\n  display: inline-block;\n  width: 100%;\n  background: #000;\n  padding: 0 1rem;\n}\n.header-title {\n  color: #fff;\n  text-transform: uppercase;\n}\n.header-title h1 {\n  display: inline-block;\n  font-weight: lighter;\n}\n.header-title h2 {\n  font-weight: lighter;\n  display: inline-block;\n}\n.header-title-separator {\n  display: inline-block;\n  -webkit-transform: rotate(-30deg);\n  -moz-transform: rotate(-30deg);\n  -o-transform: rotate(-30deg);\n  -ms-transform: rotate(-30deg);\n  transform: rotate(-30deg);\n  margin: 0 1.5em 0 1em;\n}\n.header-title-separator:before {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n  margin-right: 0.25em;\n}\n.header-title-separator:after {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n}\n.sidebar-wrapper {\n  display: inline-block;\n  width: 25%;\n}\n.sidebar-contact-info {\n  background: #35b4ab;\n  color: #fff;\n  padding: 1rem;\n}\n.sidebar-contact-info p {\n  color: #fff;\n}\n.sidebar-contact-info a {\n  color: #fff;\n}\n.sidebar-skills-title {\n  width: 100%;\n  background: #ea2c21;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-skills-title h3 {\n  color: #fff;\n  margin: 0;\n  display: inline-block;\n}\n.sidebar-skill-list-wrapper {\n  display: inline-block;\n  overflow: hidden;\n  max-height: 5000px;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  -ms-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out;\n}\n.sidebar-skill-list-wrapper.collapsed {\n  max-height: 0;\n  float: left;\n}\n.skill-title {\n  width: 50%;\n  display: inline-block;\n  color: #ea2c21;\n  font-variant: small-caps;\n  text-align: right;\n  padding: 0 0.5em;\n  font-size: 1.3rem;\n}\n@media all and (max-width: 1024px) {\n  .skill-title {\n    font-size: 1.1rem;\n    padding: 0.25em;\n  }\n}\n@media all and (max-width: 850px) {\n  .skill-title {\n    width: 100%;\n    text-align: left;\n  }\n}\n.skill-java-wrapper {\n  width: 50%;\n  display: inline-block;\n}\n@media all and (max-width: 850px) {\n  .skill-java-wrapper {\n    padding: 0 0.25em;\n    width: 100%;\n  }\n}\n.coffee-svg-wrapper {\n  width: 16.6666666666667%;\n  display: inline-block;\n}\n.coffee-svg-wrapper svg {\n  height: 100%;\n  width: 100%;\n  fill: #ea2c21;\n}\n.coffee-svg-wrapper.unshaded svg {\n  fill: rgba(234,44,33,0.3);\n}\n.sidebar-education-title {\n  width: 100%;\n  background: #0f72c1;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-education-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.sidebar-recognition-title {\n  width: 100%;\n  background: #35b4ab;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-recognition-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.toggle-button {\n  display: inline-block;\n  float: right;\n  color: #fff;\n  line-height: 1.5em;\n}\n.body-wrapper {\n  padding: 0;\n  margin: 0;\n  display: inline-block;\n  width: 100%;\n}\n*,\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  clear: both;\n}\nbody {\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+	exports.push([module.id, "\n\n[class*=\"entypo-\"]:before {\n  font-family: 'entypo', sans-serif;\n}\nbody {\n  font-family: sans-serif;\n  font-smoothing: antialiased;\n  line-heght: 1.5em;\n}\na {\n  text-decoration: none;\n}\np {\n  font-weight: lighter;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Roboto Condensed', sans-serif;\n}\nh1,\nh2,\nh3 {\n  text-transform: uppercase;\n}\nh5 {\n  font-weight: lighter;\n}\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n.experience-wrapper {\n  width: 75%;\n  display: inline-block;\n  vertical-align: top;\n  padding: 1rem;\n  position: relative;\n}\n.experience-wrapper h3 {\n  color: #0f72c1;\n  margin-top: 0;\n}\n.experience-section {\n  width: 50%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section.featured {\n  width: 100%;\n}\n.experience-section.featured .experience-section-main {\n  width: 63%;\n  margin-right: 3%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section.featured .experience-section-featured {\n  width: 34%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section h4,\n.experience-section h5 {\n  margin: 0;\n}\n.experience-section .position-title {\n  margin: 0;\n  font-style: italic;\n}\n.experience-section .project-link {\n  color: #fff;\n  background: #ea2c21;\n  margin-bottom: 1em;\n  display: inline-block;\n  padding: 0.25em;\n  font-family: 'Roboto Condensed', sans-serif;\n}\n.header-wrapper {\n  display: inline-block;\n  width: 100%;\n  background: #000;\n  padding: 0 1rem;\n}\n.header-title {\n  color: #fff;\n  text-transform: uppercase;\n}\n.header-title h1 {\n  display: inline-block;\n  font-weight: lighter;\n}\n.header-title h2 {\n  font-weight: lighter;\n  display: inline-block;\n}\n.header-title-separator {\n  display: inline-block;\n  -webkit-transform: rotate(-30deg);\n  -moz-transform: rotate(-30deg);\n  -o-transform: rotate(-30deg);\n  -ms-transform: rotate(-30deg);\n  transform: rotate(-30deg);\n  margin: 0 1.5em 0 1em;\n}\n.header-title-separator:before {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n  margin-right: 0.25em;\n}\n.header-title-separator:after {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n}\n.sidebar-wrapper {\n  display: inline-block;\n  width: 25%;\n}\n.sidebar-contact-info {\n  background: #35b4ab;\n  color: #fff;\n  padding: 1rem;\n}\n.sidebar-contact-info p {\n  color: #fff;\n}\n.sidebar-contact-info a {\n  color: #fff;\n}\n.sidebar-skills-title {\n  width: 100%;\n  background: #ea2c21;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-skills-title h3 {\n  color: #fff;\n  margin: 0;\n  display: inline-block;\n}\n.sidebar-skill-list-wrapper {\n  display: inline-block;\n  overflow: hidden;\n  max-height: 5000px;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  -ms-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out;\n}\n.sidebar-skill-list-wrapper.collapsed {\n  max-height: 0;\n  float: left;\n}\n.skill-title {\n  width: 50%;\n  display: inline-block;\n  color: #ea2c21;\n  font-variant: small-caps;\n  text-align: right;\n  padding: 0 0.5em;\n  font-size: 1.3rem;\n}\n@media all and (max-width: 1024px) {\n  .skill-title {\n    font-size: 1.1rem;\n    padding: 0.25em;\n  }\n}\n@media all and (max-width: 850px) {\n  .skill-title {\n    width: 100%;\n    text-align: left;\n  }\n}\n.skill-java-wrapper {\n  width: 50%;\n  display: inline-block;\n}\n@media all and (max-width: 850px) {\n  .skill-java-wrapper {\n    padding: 0 0.25em;\n    width: 100%;\n  }\n}\n.coffee-svg-wrapper {\n  width: 16.6666666666667%;\n  display: inline-block;\n}\n.coffee-svg-wrapper svg {\n  height: 100%;\n  width: 100%;\n  fill: #ea2c21;\n}\n.coffee-svg-wrapper.unshaded svg {\n  fill: rgba(234,44,33,0.3);\n}\n.sidebar-education p {\n  padding: 0 1em;\n}\n.sidebar-education-title {\n  width: 100%;\n  background: #0f72c1;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-education-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.sidebar-recognition-title {\n  width: 100%;\n  background: #35b4ab;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-recognition-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.toggle-button {\n  display: inline-block;\n  float: right;\n  color: #fff;\n  line-height: 1.5em;\n}\n.body-wrapper {\n  padding: 0;\n  margin: 0;\n  display: inline-block;\n  width: 100%;\n}\n*,\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  clear: both;\n}\nbody {\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 /***/ },
 /* 208 */
@@ -24320,6 +24219,190 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Skill = __webpack_require__(202);
+
+	var Skills = React.createClass({
+		displayName: 'Skills',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'sidebar-skills' },
+				React.createElement(
+					'div',
+					{ className: 'sidebar-skills-title' },
+					React.createElement(
+						'h3',
+						null,
+						'Skills'
+					),
+					React.createElement('div', {
+						className: 'entypo-minus toggle-button',
+						onClick: this.collapseSkills
+					})
+				),
+				React.createElement(
+					'div',
+					{ className: 'sidebar-skill-list-wrapper' },
+					React.createElement(Skill, { level: 5, title: 'jQuery' }),
+					React.createElement(Skill, { level: 2, title: 'AngularJs' }),
+					React.createElement(Skill, { level: 4, title: 'Javascript' }),
+					React.createElement(Skill, { level: 1, title: 'ReactJs' }),
+					React.createElement(Skill, { level: 5, title: 'Ruby' }),
+					React.createElement(Skill, { level: 3, title: 'CSS3' }),
+					React.createElement(Skill, { level: 5, title: 'HTML5' }),
+					React.createElement(Skill, { level: 5, title: 'Adobe CS' })
+				)
+			);
+		}
+	});
+
+	module.exports = Skills;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Contact = React.createClass({
+		displayName: "Contact",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: "sidebar-contact-info" },
+				React.createElement(
+					"p",
+					null,
+					React.createElement(
+						"a",
+						{ href: "mailto:efollender@gmail.com" },
+						React.createElement("span", { className: "entypo-mail" }),
+						" efollender@gmail.com"
+					)
+				),
+				React.createElement(
+					"p",
+					null,
+					React.createElement(
+						"a",
+						{ href: "http://www.emmafollender.com" },
+						React.createElement("span", { className: "entypo-monitor" }),
+						" www.emmafollender.com"
+					)
+				),
+				React.createElement(
+					"p",
+					null,
+					React.createElement(
+						"a",
+						{ href: "http://github.com/efollender" },
+						React.createElement("span", { className: "entypo-github" }),
+						" http://github.com/efollender"
+					)
+				),
+				React.createElement(
+					"p",
+					null,
+					React.createElement(
+						"a",
+						{ href: "http://twitter.com/efollender" },
+						React.createElement("span", { className: "entypo-twitter" }),
+						" @efollender"
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Contact;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Education = React.createClass({
+		displayName: "Education",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: "sidebar-education" },
+				React.createElement(
+					"div",
+					{ className: "sidebar-education-title" },
+					React.createElement(
+						"h3",
+						null,
+						"Education"
+					)
+				),
+				React.createElement(
+					"p",
+					null,
+					React.createElement(
+						"strong",
+						null,
+						"NYU Poly "
+					),
+					"2013",
+					React.createElement("br", null),
+					React.createElement(
+						"em",
+						null,
+						"Computer Science"
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Education;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Recognition = React.createClass({
+		displayName: "Recognition",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: "sidebar-recognition" },
+				React.createElement(
+					"div",
+					{ className: "sidebar-recognition-title" },
+					React.createElement(
+						"h3",
+						null,
+						"Recognition"
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Recognition;
 
 /***/ }
 /******/ ]);
