@@ -1,36 +1,8 @@
-.header-wrapper
-	display inline-block
-	width 100%
-	background black
-	padding 0 1rem
-.header-title
-	color white
-	text-transform uppercase
-	h1
-		display inline-block
-		font-weight lighter
-	h2
-		font-weight lighter
-		display inline-block
-.header-title-separator
-	display inline-block
-	transform rotate(-30deg)
-	margin 0 1.5em 0 1em
-	&:before
-		content: ''
-		width: .15em
-		height: 1.5em
-		background-color: white
-		display: inline-block
-		top: .25em
-		position: relative
-		margin-right .25em
-	&:after
-		content: ''
-		width: .15em
-		height: 1.5em
-		background-color: white
-		display: inline-block
-		top: .25em
-		position: relative
-		// left 2em
+@media screen
+	.header-wrapper
+		color white
+		background lighten(red, 15)
+		font-size 2rem
+		@extend $fullscreen
+		+mobile()
+			font-size 1.2rem

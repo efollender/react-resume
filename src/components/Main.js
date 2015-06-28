@@ -1,11 +1,12 @@
 const React = require('react');
-const Resume = require('./resume/Resume');
+const Router = require('react-router');
+const {RouteHandler} = Router;
 
 let Main = React.createClass({
 	render(){
 		return (
 			<div>
-				<Resume/>
+				<RouteHandler/>
 			</div>
 			);
 	}

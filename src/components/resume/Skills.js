@@ -7,20 +7,16 @@ let Skills = React.createClass({
 		<div className="sidebar-skills">
 					<div className="sidebar-skills-title">
 						<h3>Skills</h3>
-						<div 
-							className="entypo-minus toggle-button"
-							onClick={this.collapseSkills}
-						/>
 					</div>
 					<div className={"sidebar-skill-list-wrapper"}>
 						<Skill level={5} title="jQuery" />
-						<Skill level={2} title="AngularJs" />
-						<Skill level={4} title="Javascript" />
-						<Skill level={1} title="ReactJs" />
-						<Skill level={5} title="Ruby" />
-						<Skill level={3} title="CSS3" />
-						<Skill level={5} title="HTML5" />
-						<Skill level={5} title="Adobe CS" />
+						<Skill key={Math.random()*3} level={2} title="AngularJs" />
+						<Skill key={Math.random()*3} level={4} title="Javascript" />
+						<Skill key={Math.random()*3} level={1} title="ReactJs" />
+						<Skill key={Math.random()*3} level={5} title="Ruby" />
+						<Skill key={Math.random()*3} level={3} title="CSS3" />
+						<Skill key={Math.random()*3} level={5} title="HTML5" />
+						<Skill key={Math.random()*3} level={5} title="Adobe CS" />
 					</div>
 				</div>
 			);

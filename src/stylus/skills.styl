@@ -1,0 +1,39 @@
+.sidebar-skills
+	@extend $fullscreen
+.skill-wrapper
+	position absolute
+	left 0
+	width 100%
+	background lighten(red, 15)
+.skill-java-wrapper
+	width 50%
+	display inline-block
+	// @media all and (max-width:$break3)
+	@media all and (max-width:$break4)
+		padding 0 .25em
+		width 100%
+.coffee-svg-wrapper
+	width (1/6 * 100)%
+	display inline-block
+	svg
+		height 100%
+		width 100%
+		// @media all and (max-width:$break4)
+		// 	fill rgba($shade2, .3)
+	.empty-java
+		fill rgba($shade2, .3)
+	&.unshaded
+		.java
+			display none
+for n in (1..6)
+	.coffee-svg-wrapper:nth-child({n})
+		.java, .empty-java
+			animation-delay unit(n/2,'s')
+.java
+	fill white
+	animation slide 3s forwards
+@keyframes slide 
+	from
+		y 100%
+	to 
+		y 0

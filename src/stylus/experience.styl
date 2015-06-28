@@ -1,37 +1,48 @@
-.experience-wrapper
-	width 75%
-	display inline-block
-	vertical-align top
-	padding 1rem
-	position relative
-	h3
-		color $shade3
-		margin-top 0
-.experience-section
-	width 50%
-	display inline-block
-	vertical-align top
-	&.featured
-		width 100%
-		.experience-section-main
-			width 63%
-			margin-right 3%
-			display inline-block
-			vertical-align top
-		.experience-section-featured
-			width 34%
-			display inline-block
-			vertical-align top
-	h4
-	h5
-		margin 0
-	.position-title
-		margin 0
-		font-style italic
-	.project-link
-		color white
-		background $shade2
-		margin-bottom 1em
+@media screen
+	.experience-wrapper
+		@extend $fullscreen
+		font-size 1.1rem
+	.experience-section
+		width 25%
+		padding 2em
 		display inline-block
-		padding .25em
-		font-family $header-font
+		position relative
+		transition all .1s linear
+		.position-title
+			transition all .2s ease-in-out
+		&:before
+			content ''
+			display inline-block
+			position absolute
+			left 12.5%
+			background white
+			height 1px
+			width 75%
+			transition all .2s linear
+			top -1em
+			opacity 0
+		&:after
+			content ''
+			display inline-block
+			position absolute
+			left 12.5%
+			background white
+			height 1px
+			width 75%
+			transition all .2s linear
+			bottom -1em
+			opacity 0
+		&:hover
+			.position-title
+				color #fff
+			&:before
+				top 1em
+				opacity 1
+			&:after
+				bottom 1em
+				opacity 1
+	.experience-section-main
+		p
+			display none
+	.experience-section-featured
+		display none

@@ -49,7 +49,7 @@
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(157);
 	var routes = __webpack_require__(196);
-	var css = __webpack_require__(206);
+	var css = __webpack_require__(197);
 
 	Router.run(routes, function (Handler) {
 	  React.render(React.createElement(Handler, null), document.getElementById('app'));
@@ -23554,367 +23554,37 @@
 	var RouteHandler = Router.RouteHandler;
 	var Link = Router.Link;
 
-	var App = __webpack_require__(197);
+	var App = __webpack_require__(201);
+	var Resume = __webpack_require__(206);
+	var Header = __webpack_require__(207);
+	var Experience = __webpack_require__(210);
+	var Print = __webpack_require__(218);
+	var Skills = __webpack_require__(214);
 
-	module.exports = React.createElement(Route, { name: 'app', path: '/', handler: App });
+	module.exports = React.createElement(
+		Route,
+		{ name: 'main', path: '/', handler: App },
+		React.createElement(
+			Route,
+			{ name: 'resume', path: '/', handler: Resume },
+			React.createElement(Route, { name: 'header', path: '/', handler: Header }),
+			React.createElement(Route, { name: 'experience', path: '/experience', handler: Experience }),
+			React.createElement(Route, { name: 'skills', path: '/skills', handler: Skills })
+		),
+		React.createElement(Route, { name: 'print', path: '/print', handler: Print })
+	);
 
 /***/ },
 /* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Resume = __webpack_require__(198);
-
-	var Main = React.createClass({
-		displayName: 'Main',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(Resume, null)
-			);
-		}
-	});
-
-	module.exports = Main;
-
-/***/ },
-/* 198 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Header = __webpack_require__(199);
-	var Body = __webpack_require__(200);
-
-	var Resume = React.createClass({
-		displayName: 'Resume',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'resume-wrapper' },
-				React.createElement(Header, null),
-				React.createElement(Body, null)
-			);
-		}
-	});
-
-	module.exports = Resume;
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-
-	var Header = React.createClass({
-		displayName: "Header",
-
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: "header-wrapper" },
-				React.createElement(
-					"div",
-					{ className: "header-title" },
-					React.createElement(
-						"h1",
-						null,
-						"Emma Follender"
-					),
-					React.createElement("div", { className: "header-title-separator" }),
-					React.createElement(
-						"h2",
-						null,
-						"Front-end Developer"
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = Header;
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Sidebar = __webpack_require__(201);
-	var Experience = __webpack_require__(204);
-
-	var Body = React.createClass({
-		displayName: 'Body',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'body-wrapper' },
-				React.createElement(Sidebar, null),
-				React.createElement(Experience, null)
-			);
-		}
-	});
-
-	module.exports = Body;
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Skills = __webpack_require__(210);
-	var Contact = __webpack_require__(211);
-	var Education = __webpack_require__(212);
-	var Recognition = __webpack_require__(213);
-
-	var Sidebar = React.createClass({
-		displayName: 'Sidebar',
-
-		getInitialState: function getInitialState() {
-			return {
-				collapse: false
-			};
-		},
-		collapseSkills: function collapseSkills(e) {
-			//e.preventDefault();
-			var skill = document.getElementsByClassName('sidebar-skill-list-wrapper');
-			[].slice.call(skill).forEach(function (el) {
-				if (el.getAttribute('class').split(' ').length > 1) {
-					el.setAttribute('class', 'sidebar-skill-list-wrapper');
-				} else {
-					el.setAttribute('class', 'sidebar-skill-list-wrapper collapsed');
-				}
-			});
-		},
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'sidebar-wrapper' },
-				React.createElement(Contact, null),
-				React.createElement(Skills, null),
-				React.createElement(Education, null),
-				React.createElement(Recognition, null)
-			);
-		}
-	});
-
-	module.exports = Sidebar;
-
-/***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var Coffee = __webpack_require__(203);
-
-	var Skill = React.createClass({
-		displayName: 'Skill',
-
-		propType: {
-			title: React.PropTypes.string,
-			level: React.PropTypes.number
-		},
-		createArrFromNum: function createArrFromNum(num) {
-			return Array.apply(null, Array(num)).map(function (_, i) {
-				return i;
-			});
-		},
-		levels: function levels(levelNum, shaded) {
-			var levelArray = this.createArrFromNum(levelNum);
-			return levelArray.map(function (key, index) {
-				return React.createElement(Coffee, { shaded: shaded });
-			});
-		},
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'skill-wrapper' },
-				React.createElement(
-					'div',
-					{ className: 'skill-title' },
-					this.props.title
-				),
-				React.createElement(
-					'div',
-					{ className: 'skill-java-wrapper' },
-					this.props.level && this.levels(this.props.level, true),
-					this.props.level && this.levels(6 - this.props.level, false)
-				)
-			);
-		}
-	});
-
-	module.exports = Skill;
-
-/***/ },
-/* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var Coffee = React.createClass({
-		displayName: 'Coffee',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: this.props.shaded ? 'coffee-svg-wrapper' : 'coffee-svg-wrapper unshaded' },
-				React.createElement(
-					'svg',
-					{ version: '1.1', id: 'Layer_1', xmlns: 'http://www.w3.org/2000/svg', x: '0px', y: '0px',
-						width: '512px', height: '512px', viewBox: '0 0 512 512', 'enable-background': 'new 0 0 512 512' },
-					React.createElement(
-						'g',
-						null,
-						React.createElement('path', { d: 'M423.555,221.188c0.033-2.533,0.049-5.076,0.049-7.626c0-30.532-93.227-55.284-208.225-55.284 c-114.997,0-208.224,24.752-208.224,55.284C7.156,378.385,73.546,512,215.379,512c83.412,0,140.723-46.225,173.787-117.818 c3.339,0.271,6.699,0.457,10.119,0.457c58.297,0,105.56-39.355,105.56-87.904C504.844,265.143,470.153,230.321,423.555,221.188z M349.141,235.972c-36.689,8.652-84.195,13.417-133.762,13.417c-49.565,0-97.07-4.765-133.76-13.417 c-35.822-8.448-50.376-18.136-54.252-22.411c3.876-4.275,18.431-13.961,54.252-22.409c36.688-8.653,84.192-13.419,133.76-13.419 c49.564,0,97.07,4.767,133.762,13.419c35.822,8.448,50.377,18.134,54.254,22.409C399.518,217.836,384.963,227.523,349.141,235.972z M398.268,372.213c12.537-33.865,20.354-72.3,23.6-113.514c30.5,6.246,48.42,28.615,48.42,51.395 C470.284,339.477,448.723,368.814,398.268,372.213z' }),
-						React.createElement('path', { d: 'M255.689,126.078c28.192-42.617-49.312-88.43,4.22-126.078c-44.528,2.943-52.161,30.188-40.936,51.461 C229.63,71.652,255.649,85.732,255.689,126.078z' }),
-						React.createElement('path', { d: 'M233.163,154.501c12.646-35.708-59.27-64.515-19.555-105.806c-37.209,10.992-36.253,41.592-20.227,58.701 C204.951,119.75,225.905,125.482,233.163,154.501z' })
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = Coffee;
-
-/***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ExperienceBlock = __webpack_require__(205);
-
-	var Experience = React.createClass({
-		displayName: 'Experience',
-
-		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'experience-wrapper' },
-				React.createElement(
-					'h3',
-					null,
-					'Experience'
-				),
-				React.createElement(ExperienceBlock, {
-					company: 'Brooklyn United',
-					title: 'Web Developer',
-					date: 'December 2014-present',
-					description: 'As a developer at Brooklyn United, I work closely with the design team to produce highly responsive sites that leverage experimental design concepts. Most recently, I built a custom Wordpress blog using Twig, Gulp, and Stylus. Internal projects include an API built with Node and React to control  the office Spotify account and output to a Raspberry Pi that we connected to speakers.',
-					featuredProject: '<a href="http://doggerel.arup.com" class="project-link"> doggerel.arup.com</a><br/> Developed a custom Wordpress theme for the global engineering firm, Arup. Each page template incorporated multiple dynamic components. Analytics were used to determine and display popular articles. The theme involved heavy use of custom post types and meta fields. Build tools included Twig, Gulp, and Stylus.<br/> <strong>Featured on</strong>: <a href="http://www.cssawds.com/website/doggerel/"> http://www.cssawds.com/website/doggerel/</a>'
-				}),
-				React.createElement(ExperienceBlock, {
-					company: 'Makersquare',
-					title: 'Immersive Software Engineering Student',
-					date: 'July 2014-October 2014',
-					description: 'I chose to attend Maker Square, a 12-week accelerated learning program that teaches modern web application development, to improve my skillset and my efficiency as a developer. During the program, I developed multiple applications that employed the use of Sass, Bootstrap, Foundation, and AngularJs. While I worked with backend technologies including PostgreSQL and MongoDB, I focused primarily on front-end development with Javascript and JS frameworks.',
-					featuredProject: '<a href="https://github.com/dkellis42/COdeWORK" class="project-link"> CO(de)WORK</a><br/> An app that connects coders to other coders nearby,  based on their areas of expertise, location, and problems they may need some guidance solving. Built on MongoDB,  Express, AngularJS, and Node.JS, and integrates the Google Maps API,  Foursquare API, Socket.IO and Pubnub. I created mock-ups which  I translated into code, using Sass for styling and Angular for  dynamic templating. I integrated all APIs and wrote  front-end Javascript.'
-				}),
-				React.createElement(ExperienceBlock, {
-					company: 'Scarinci Hollenbeck',
-					title: 'Web Developer',
-					date: 'January 2012-July 2014',
-					description: 'Redesigned the company website and wrote a custom responsive Wordpress template for it. <br/><br/> Converted previous designs into modern UX/UI experiences, and static HTML pages into dynamically populated views using PHP templating. <br/><br/> Went through the same process for multiple company blogs and minisites.'
-				}),
-				React.createElement(ExperienceBlock, {
-					company: 'Seeds of Peace',
-					title: 'Communications Intern',
-					date: 'January 2012-June 2012',
-					description: 'Designed graphics and ads including one for Gotham Magazine, using Creative Suite. <br/><br/> Transferred of content from the old site design to the new one. <br/><br/> Built out basic page layouts for the new site using HTML and CSS.'
-				})
-			);
-		}
-	});
-
-	module.exports = Experience;
-
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(1);
-
-	var ExperienceBlock = React.createClass({
-		displayName: "ExperienceBlock",
-
-		propTypes: {
-			company: React.PropTypes.string,
-			position: React.PropTypes.string,
-			date: React.PropTypes.string,
-			description: React.PropTypes.string,
-			featuredProject: React.PropTypes.string
-		},
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: this.props.featuredProject ? "experience-section featured" : "experience-section" },
-				React.createElement(
-					"div",
-					{ className: "experience-section-main" },
-					React.createElement(
-						"h4",
-						null,
-						this.props.company
-					),
-					React.createElement(
-						"h4",
-						{ className: "position-title" },
-						this.props.title
-					),
-					React.createElement(
-						"h5",
-						null,
-						this.props.date
-					),
-					React.createElement("p", { dangerouslySetInnerHTML: { __html: this.props.description } })
-				),
-				this.props.featuredProject && React.createElement(
-					"div",
-					{ className: "experience-section-featured" },
-					React.createElement(
-						"h4",
-						null,
-						"Featured Project"
-					),
-					React.createElement("p", { dangerouslySetInnerHTML: { __html: this.props.featuredProject } })
-				)
-			);
-		}
-	});
-
-	module.exports = ExperienceBlock;
-
-/***/ },
-/* 206 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(207);
+	var content = __webpack_require__(198);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(209)(content, {});
+	var update = __webpack_require__(200)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23931,16 +23601,16 @@
 	}
 
 /***/ },
-/* 207 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(208)();
+	exports = module.exports = __webpack_require__(199)();
 	exports.push([module.id, "@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);", ""]);
 	exports.push([module.id, "@import url(http://weloveiconfonts.com/api/?family=entypo);", ""]);
-	exports.push([module.id, "\n\n[class*=\"entypo-\"]:before {\n  font-family: 'entypo', sans-serif;\n}\nbody {\n  font-family: sans-serif;\n  font-smoothing: antialiased;\n  line-heght: 1.5em;\n}\na {\n  text-decoration: none;\n}\np {\n  font-weight: lighter;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Roboto Condensed', sans-serif;\n}\nh1,\nh2,\nh3 {\n  text-transform: uppercase;\n}\nh5 {\n  font-weight: lighter;\n}\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n.experience-wrapper {\n  width: 75%;\n  display: inline-block;\n  vertical-align: top;\n  padding: 1rem;\n  position: relative;\n}\n.experience-wrapper h3 {\n  color: #0f72c1;\n  margin-top: 0;\n}\n.experience-section {\n  width: 50%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section.featured {\n  width: 100%;\n}\n.experience-section.featured .experience-section-main {\n  width: 63%;\n  margin-right: 3%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section.featured .experience-section-featured {\n  width: 34%;\n  display: inline-block;\n  vertical-align: top;\n}\n.experience-section h4,\n.experience-section h5 {\n  margin: 0;\n}\n.experience-section .position-title {\n  margin: 0;\n  font-style: italic;\n}\n.experience-section .project-link {\n  color: #fff;\n  background: #ea2c21;\n  margin-bottom: 1em;\n  display: inline-block;\n  padding: 0.25em;\n  font-family: 'Roboto Condensed', sans-serif;\n}\n.header-wrapper {\n  display: inline-block;\n  width: 100%;\n  background: #000;\n  padding: 0 1rem;\n}\n.header-title {\n  color: #fff;\n  text-transform: uppercase;\n}\n.header-title h1 {\n  display: inline-block;\n  font-weight: lighter;\n}\n.header-title h2 {\n  font-weight: lighter;\n  display: inline-block;\n}\n.header-title-separator {\n  display: inline-block;\n  -webkit-transform: rotate(-30deg);\n  -moz-transform: rotate(-30deg);\n  -o-transform: rotate(-30deg);\n  -ms-transform: rotate(-30deg);\n  transform: rotate(-30deg);\n  margin: 0 1.5em 0 1em;\n}\n.header-title-separator:before {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n  margin-right: 0.25em;\n}\n.header-title-separator:after {\n  content: '';\n  width: 0.15em;\n  height: 1.5em;\n  background-color: #fff;\n  display: inline-block;\n  top: 0.25em;\n  position: relative;\n}\n.sidebar-wrapper {\n  display: inline-block;\n  width: 25%;\n}\n.sidebar-contact-info {\n  background: #35b4ab;\n  color: #fff;\n  padding: 1rem;\n}\n.sidebar-contact-info p {\n  color: #fff;\n}\n.sidebar-contact-info a {\n  color: #fff;\n}\n.sidebar-skills-title {\n  width: 100%;\n  background: #ea2c21;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-skills-title h3 {\n  color: #fff;\n  margin: 0;\n  display: inline-block;\n}\n.sidebar-skill-list-wrapper {\n  display: inline-block;\n  overflow: hidden;\n  max-height: 5000px;\n  -webkit-transition: all 1s ease-in-out;\n  -moz-transition: all 1s ease-in-out;\n  -o-transition: all 1s ease-in-out;\n  -ms-transition: all 1s ease-in-out;\n  transition: all 1s ease-in-out;\n}\n.sidebar-skill-list-wrapper.collapsed {\n  max-height: 0;\n  float: left;\n}\n.skill-title {\n  width: 50%;\n  display: inline-block;\n  color: #ea2c21;\n  font-variant: small-caps;\n  text-align: right;\n  padding: 0 0.5em;\n  font-size: 1.3rem;\n}\n@media all and (max-width: 1024px) {\n  .skill-title {\n    font-size: 1.1rem;\n    padding: 0.25em;\n  }\n}\n@media all and (max-width: 850px) {\n  .skill-title {\n    width: 100%;\n    text-align: left;\n  }\n}\n.skill-java-wrapper {\n  width: 50%;\n  display: inline-block;\n}\n@media all and (max-width: 850px) {\n  .skill-java-wrapper {\n    padding: 0 0.25em;\n    width: 100%;\n  }\n}\n.coffee-svg-wrapper {\n  width: 16.6666666666667%;\n  display: inline-block;\n}\n.coffee-svg-wrapper svg {\n  height: 100%;\n  width: 100%;\n  fill: #ea2c21;\n}\n.coffee-svg-wrapper.unshaded svg {\n  fill: rgba(234,44,33,0.3);\n}\n.sidebar-education p {\n  padding: 0 1em;\n}\n.sidebar-education-title {\n  width: 100%;\n  background: #0f72c1;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-education-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.sidebar-recognition-title {\n  width: 100%;\n  background: #35b4ab;\n  padding: 0.5rem 1rem;\n  margin: 0.5rem 0;\n}\n.sidebar-recognition-title h3 {\n  color: #fff;\n  margin: 0;\n}\n.toggle-button {\n  display: inline-block;\n  float: right;\n  color: #fff;\n  line-height: 1.5em;\n}\n.body-wrapper {\n  padding: 0;\n  margin: 0;\n  display: inline-block;\n  width: 100%;\n}\n*,\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  clear: both;\n}\nbody {\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+	exports.push([module.id, ".experience-wrapper,\n.header-wrapper,\n.sidebar-skills {\n  height: calc(100vh - 40px);\n  min-height: 460px;\n  max-width: calc(100vw - 40px);\n  margin: 20px;\n  padding: 100px 0;\n  z-index: 1;\n  position: relative;\n  text-align: center;\n  display: flex;\n  background: #ff4d4d;\n  color: #fff;\n  overflow: hidden;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  transform: translate3d(0, 0, 0);\n}\n\n\n[class*=\"entypo-\"]:before {\n  font-family: 'entypo', sans-serif;\n}\nbody {\n  font-family: sans-serif;\n  font-smoothing: antialiased;\n  line-heght: 1.5em;\n}\na {\n  text-decoration: none;\n}\np {\n  font-weight: lighter;\n}\nh1,\nh2,\nh3,\nh4,\nh5,\nh6 {\n  font-family: 'Roboto Condensed', sans-serif;\n}\nh1,\nh2,\nh3 {\n  text-transform: uppercase;\n}\nh3 {\n  font-size: 2rem;\n}\nh5 {\n  font-weight: lighter;\n}\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n/* normalize/.styl | http://github.com/nulltask/normalize/.styl */\n/* based on hail2u's normalize/.scss | https://github.com/hail2u/normalize/.scss */\n@media screen {\n  .experience-wrapper {\n    font-size: 1.1rem;\n  }\n  .experience-section {\n    width: 25%;\n    padding: 2em;\n    display: inline-block;\n    position: relative;\n    -webkit-transition: all 0.1s linear;\n    -moz-transition: all 0.1s linear;\n    -o-transition: all 0.1s linear;\n    -ms-transition: all 0.1s linear;\n    transition: all 0.1s linear;\n  }\n  .experience-section .position-title {\n    -webkit-transition: all 0.2s ease-in-out;\n    -moz-transition: all 0.2s ease-in-out;\n    -o-transition: all 0.2s ease-in-out;\n    -ms-transition: all 0.2s ease-in-out;\n    transition: all 0.2s ease-in-out;\n  }\n  .experience-section:before {\n    content: '';\n    display: inline-block;\n    position: absolute;\n    left: 12.5%;\n    background: #fff;\n    height: 1px;\n    width: 75%;\n    -webkit-transition: all 0.2s linear;\n    -moz-transition: all 0.2s linear;\n    -o-transition: all 0.2s linear;\n    -ms-transition: all 0.2s linear;\n    transition: all 0.2s linear;\n    top: -1em;\n    opacity: 0;\n    -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n    filter: alpha(opacity=0);\n  }\n  .experience-section:after {\n    content: '';\n    display: inline-block;\n    position: absolute;\n    left: 12.5%;\n    background: #fff;\n    height: 1px;\n    width: 75%;\n    -webkit-transition: all 0.2s linear;\n    -moz-transition: all 0.2s linear;\n    -o-transition: all 0.2s linear;\n    -ms-transition: all 0.2s linear;\n    transition: all 0.2s linear;\n    bottom: -1em;\n    opacity: 0;\n    -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n    filter: alpha(opacity=0);\n  }\n  .experience-section:hover .position-title {\n    color: #fff;\n  }\n  .experience-section:hover:before {\n    top: 1em;\n    opacity: 1;\n    -ms-filter: none;\n    filter: none;\n  }\n  .experience-section:hover:after {\n    bottom: 1em;\n    opacity: 1;\n    -ms-filter: none;\n    filter: none;\n  }\n  .experience-section-main p {\n    display: none;\n  }\n  .experience-section-featured {\n    display: none;\n  }\n}\n@media screen {\n  .header-wrapper {\n    color: #fff;\n    background: #ff4d4d;\n    font-size: 2rem;\n  }\n}\n@media screen {\n  .resume-navigation {\n    position: absolute;\n    z-index: 2;\n    padding: 2em;\n    margin: 0;\n    display: inline-block;\n    font-family: 'Georgia', serif;\n    list-style-type: none;\n    font-size: 1em;\n  }\n  .resume-navigation .active li:before {\n    color: #fff;\n  }\n  .resume-navigation li {\n    display: inline block;\n    position: relative;\n    text-align: left;\n    margin-bottom: 0.5em;\n  }\n  .resume-navigation li:before {\n    content: attr(data-section);\n    color: #c00;\n    left: 0;\n  }\n  .resume-navigation li:after {\n    color: #fff;\n    width: 0;\n    content: attr(data-section);\n    display: inline-block;\n    overflow: hidden;\n    position: absolute;\n    left: 0;\n    -webkit-transition: width 0.4s 0.3s;\n    -moz-transition: width 0.4s 0.3s;\n    -o-transition: width 0.4s 0.3s;\n    -ms-transition: width 0.4s 0.3s;\n    transition: width 0.4s 0.3s;\n  }\n  .resume-navigation li:hover:after {\n    width: 100%;\n  }\n}\n.skill-wrapper {\n  position: absolute;\n  left: 0;\n  width: 100%;\n  background: #ff4d4d;\n}\n.skill-java-wrapper {\n  width: 50%;\n  display: inline-block;\n}\n@media all and (max-width: 850px) {\n  .skill-java-wrapper {\n    padding: 0 0.25em;\n    width: 100%;\n  }\n}\n.coffee-svg-wrapper {\n  width: 16.6666666666667%;\n  display: inline-block;\n}\n.coffee-svg-wrapper svg {\n  height: 100%;\n  width: 100%;\n}\n.coffee-svg-wrapper .empty-java {\n  fill: rgba(234,44,33,0.3);\n}\n.coffee-svg-wrapper.unshaded .java {\n  display: none;\n}\n.coffee-svg-wrapper:nth-child(1) .java,\n.coffee-svg-wrapper:nth-child(1) .empty-java {\n  -webkit-animation-delay: 0.5s;\n  -moz-animation-delay: 0.5s;\n  -o-animation-delay: 0.5s;\n  -ms-animation-delay: 0.5s;\n  animation-delay: 0.5s;\n}\n.coffee-svg-wrapper:nth-child(2) .java,\n.coffee-svg-wrapper:nth-child(2) .empty-java {\n  -webkit-animation-delay: 1s;\n  -moz-animation-delay: 1s;\n  -o-animation-delay: 1s;\n  -ms-animation-delay: 1s;\n  animation-delay: 1s;\n}\n.coffee-svg-wrapper:nth-child(3) .java,\n.coffee-svg-wrapper:nth-child(3) .empty-java {\n  -webkit-animation-delay: 1.5s;\n  -moz-animation-delay: 1.5s;\n  -o-animation-delay: 1.5s;\n  -ms-animation-delay: 1.5s;\n  animation-delay: 1.5s;\n}\n.coffee-svg-wrapper:nth-child(4) .java,\n.coffee-svg-wrapper:nth-child(4) .empty-java {\n  -webkit-animation-delay: 2s;\n  -moz-animation-delay: 2s;\n  -o-animation-delay: 2s;\n  -ms-animation-delay: 2s;\n  animation-delay: 2s;\n}\n.coffee-svg-wrapper:nth-child(5) .java,\n.coffee-svg-wrapper:nth-child(5) .empty-java {\n  -webkit-animation-delay: 2.5s;\n  -moz-animation-delay: 2.5s;\n  -o-animation-delay: 2.5s;\n  -ms-animation-delay: 2.5s;\n  animation-delay: 2.5s;\n}\n.coffee-svg-wrapper:nth-child(6) .java,\n.coffee-svg-wrapper:nth-child(6) .empty-java {\n  -webkit-animation-delay: 3s;\n  -moz-animation-delay: 3s;\n  -o-animation-delay: 3s;\n  -ms-animation-delay: 3s;\n  animation-delay: 3s;\n}\n.java {\n  fill: #fff;\n  -webkit-animation: slide 3s forwards;\n  -moz-animation: slide 3s forwards;\n  -o-animation: slide 3s forwards;\n  -ms-animation: slide 3s forwards;\n  animation: slide 3s forwards;\n}\n@-moz-keyframes slide {\n  from {\n    y: 100%;\n  }\n  to {\n    y: 0;\n  }\n}\n@-webkit-keyframes slide {\n  from {\n    y: 100%;\n  }\n  to {\n    y: 0;\n  }\n}\n@-o-keyframes slide {\n  from {\n    y: 100%;\n  }\n  to {\n    y: 0;\n  }\n}\n@keyframes slide {\n  from {\n    y: 100%;\n  }\n  to {\n    y: 0;\n  }\n}\n@media screen {\n  .experience-wrapper {\n    font-size: 1.1rem;\n  }\n  .experience-section {\n    width: 25%;\n    padding: 2em;\n    display: inline-block;\n    position: relative;\n    -webkit-transition: all 0.1s linear;\n    -moz-transition: all 0.1s linear;\n    -o-transition: all 0.1s linear;\n    -ms-transition: all 0.1s linear;\n    transition: all 0.1s linear;\n  }\n  .experience-section .position-title {\n    -webkit-transition: all 0.2s ease-in-out;\n    -moz-transition: all 0.2s ease-in-out;\n    -o-transition: all 0.2s ease-in-out;\n    -ms-transition: all 0.2s ease-in-out;\n    transition: all 0.2s ease-in-out;\n  }\n  .experience-section:before {\n    content: '';\n    display: inline-block;\n    position: absolute;\n    left: 12.5%;\n    background: #fff;\n    height: 1px;\n    width: 75%;\n    -webkit-transition: all 0.2s linear;\n    -moz-transition: all 0.2s linear;\n    -o-transition: all 0.2s linear;\n    -ms-transition: all 0.2s linear;\n    transition: all 0.2s linear;\n    top: -1em;\n    opacity: 0;\n    -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n    filter: alpha(opacity=0);\n  }\n  .experience-section:after {\n    content: '';\n    display: inline-block;\n    position: absolute;\n    left: 12.5%;\n    background: #fff;\n    height: 1px;\n    width: 75%;\n    -webkit-transition: all 0.2s linear;\n    -moz-transition: all 0.2s linear;\n    -o-transition: all 0.2s linear;\n    -ms-transition: all 0.2s linear;\n    transition: all 0.2s linear;\n    bottom: -1em;\n    opacity: 0;\n    -ms-filter: \"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)\";\n    filter: alpha(opacity=0);\n  }\n  .experience-section:hover .position-title {\n    color: #fff;\n  }\n  .experience-section:hover:before {\n    top: 1em;\n    opacity: 1;\n    -ms-filter: none;\n    filter: none;\n  }\n  .experience-section:hover:after {\n    bottom: 1em;\n    opacity: 1;\n    -ms-filter: none;\n    filter: none;\n  }\n  .experience-section-main p {\n    display: none;\n  }\n  .experience-section-featured {\n    display: none;\n  }\n}\n@media screen {\n  .header-wrapper {\n    color: #fff;\n    background: #ff4d4d;\n    font-size: 2rem;\n  }\n}\n@media screen {\n  .sidebar-wrapper {\n    display: inline-block;\n    width: 25%;\n  }\n  .sidebar-contact-info {\n    background: #35b4ab;\n    color: #fff;\n    padding: 1rem;\n  }\n  .sidebar-contact-info p {\n    color: #fff;\n  }\n  .sidebar-contact-info a {\n    color: #fff;\n  }\n  .sidebar-education p {\n    padding: 0 1em;\n  }\n  .sidebar-education-title {\n    width: 100%;\n    background: #0f72c1;\n    padding: 0.5rem 1rem;\n    margin: 0.5rem 0;\n  }\n  .sidebar-education-title h3 {\n    color: #fff;\n    margin: 0;\n  }\n  .sidebar-recognition-title {\n    width: 100%;\n    background: #35b4ab;\n    padding: 0.5rem 1rem;\n    margin: 0.5rem 0;\n  }\n  .sidebar-recognition-title h3 {\n    color: #fff;\n    margin: 0;\n  }\n  .toggle-button {\n    display: inline-block;\n    float: right;\n    color: #fff;\n    line-height: 1.5em;\n  }\n}\n@media screen {\n  .resume-wrapper {\n    padding: 0;\n    margin: 0;\n    display: inline-block;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n  }\n}\n@media only screen and (max-width: 400px) {\n  .header-wrapper {\n    font-size: 1.2rem;\n  }\n}\n@media only screen and (max-width: 400px) {\n  .header-wrapper {\n    font-size: 1.2rem;\n  }\n}\n*,\n*:before,\n*:after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  clear: both;\n}\nbody,\nhtml {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n  width: 100%;\n  position: relative;\n  -webkit-font-smoothing: antialiased;\n}\n", ""]);
 
 /***/ },
-/* 208 */
+/* 199 */
 /***/ function(module, exports) {
 
 	/*
@@ -23996,7 +23666,7 @@
 
 
 /***/ },
-/* 209 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -24221,13 +23891,387 @@
 
 
 /***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(157);
+	var RouteHandler = Router.RouteHandler;
+
+	var Main = React.createClass({
+		displayName: 'Main',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(RouteHandler, null)
+			);
+		}
+	});
+
+	module.exports = Main;
+
+/***/ },
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var _require = __webpack_require__(157);
+
+	var RouteHandler = _require.RouteHandler;
+
+	var Navigation = __webpack_require__(219);
+	var Header = __webpack_require__(207);
+	var Experience = __webpack_require__(210);
+
+	var Resume = React.createClass({
+		displayName: 'Resume',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'resume-wrapper' },
+				React.createElement(Navigation, null),
+				React.createElement(RouteHandler, null)
+			);
+		}
+	});
+
+	module.exports = Resume;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var Header = React.createClass({
+		displayName: "Header",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: "header-wrapper" },
+				React.createElement(
+					"div",
+					{ className: "header-title" },
+					React.createElement(
+						"h1",
+						null,
+						"Emma Follender"
+					),
+					React.createElement("div", { className: "header-title-separator" }),
+					React.createElement(
+						"h2",
+						null,
+						"Front-end Developer"
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Header;
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Sidebar = __webpack_require__(209);
+	var Experience = __webpack_require__(210);
+
+	var Body = React.createClass({
+		displayName: 'Body',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'body-wrapper' },
+				React.createElement(Sidebar, null),
+				React.createElement(Experience, null)
+			);
+		}
+	});
+
+	module.exports = Body;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Skills = __webpack_require__(214);
+	var Contact = __webpack_require__(215);
+	var Education = __webpack_require__(216);
+	var Recognition = __webpack_require__(217);
+
+	var Sidebar = React.createClass({
+		displayName: 'Sidebar',
+
+		getInitialState: function getInitialState() {
+			return {
+				collapse: false
+			};
+		},
+		collapseSkills: function collapseSkills(e) {
+			//e.preventDefault();
+			var skill = document.getElementsByClassName('sidebar-skill-list-wrapper');
+			[].slice.call(skill).forEach(function (el) {
+				if (el.getAttribute('class').split(' ').length > 1) {
+					el.setAttribute('class', 'sidebar-skill-list-wrapper');
+				} else {
+					el.setAttribute('class', 'sidebar-skill-list-wrapper collapsed');
+				}
+			});
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'sidebar-wrapper' },
+				React.createElement(Contact, null),
+				React.createElement(Skills, null),
+				React.createElement(Education, null),
+				React.createElement(Recognition, null)
+			);
+		}
+	});
+
+	module.exports = Sidebar;
+
+/***/ },
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var Skill = __webpack_require__(202);
+	var ExperienceBlock = __webpack_require__(211);
+
+	var Experience = React.createClass({
+		displayName: 'Experience',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'experience-wrapper' },
+				React.createElement(
+					'h3',
+					null,
+					'Experience'
+				),
+				React.createElement(
+					'div',
+					{ className: 'experience-block-wrapper' },
+					React.createElement(ExperienceBlock, {
+						company: 'Brooklyn United',
+						title: 'Web Developer',
+						date: 'December 2014-present',
+						description: 'As a developer at Brooklyn United, I work closely with the design team to produce highly responsive sites that leverage experimental design concepts. Most recently, I built a custom Wordpress blog using Twig, Gulp, and Stylus. Internal projects include an API built with Node and React to control  the office Spotify account and output to a Raspberry Pi that we connected to speakers.',
+						featuredProject: '<a href="http://doggerel.arup.com" class="project-link"> doggerel.arup.com</a><br/> Developed a custom Wordpress theme for the global engineering firm, Arup. Each page template incorporated multiple dynamic components. Analytics were used to determine and display popular articles. The theme involved heavy use of custom post types and meta fields. Build tools included Twig, Gulp, and Stylus.<br/> <strong>Featured on</strong>: <a href="http://www.cssawds.com/website/doggerel/"> http://www.cssawds.com/website/doggerel/</a>'
+					}),
+					React.createElement(ExperienceBlock, {
+						company: 'Makersquare',
+						title: 'Immersive Software Engineering Student',
+						date: 'July 2014-October 2014',
+						description: 'I chose to attend Maker Square, a 12-week accelerated learning program that teaches modern web application development, to improve my skillset and my efficiency as a developer. During the program, I developed multiple applications that employed the use of Sass, Bootstrap, Foundation, and AngularJs. While I worked with backend technologies including PostgreSQL and MongoDB, I focused primarily on front-end development with Javascript and JS frameworks.',
+						featuredProject: '<a href="https://github.com/dkellis42/COdeWORK" class="project-link"> CO(de)WORK</a><br/> An app that connects coders to other coders nearby,  based on their areas of expertise, location, and problems they may need some guidance solving. Built on MongoDB,  Express, AngularJS, and Node.JS, and integrates the Google Maps API,  Foursquare API, Socket.IO and Pubnub. I created mock-ups which  I translated into code, using Sass for styling and Angular for  dynamic templating. I integrated all APIs and wrote  front-end Javascript.'
+					}),
+					React.createElement(ExperienceBlock, {
+						company: 'Scarinci Hollenbeck',
+						title: 'Web Developer',
+						date: 'January 2012-July 2014',
+						description: 'Redesigned the company website and wrote a custom responsive Wordpress template for it. <br/><br/> Converted previous designs into modern UX/UI experiences, and static HTML pages into dynamically populated views using PHP templating. <br/><br/> Went through the same process for multiple company blogs and minisites.'
+					}),
+					React.createElement(ExperienceBlock, {
+						company: 'Seeds of Peace',
+						title: 'Communications Intern',
+						date: 'January 2012-June 2012',
+						description: 'Designed graphics and ads including one for Gotham Magazine, using Creative Suite. <br/><br/> Transferred of content from the old site design to the new one. <br/><br/> Built out basic page layouts for the new site using HTML and CSS.'
+					})
+				)
+			);
+		}
+	});
+
+	module.exports = Experience;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var ExperienceBlock = React.createClass({
+		displayName: "ExperienceBlock",
+
+		propTypes: {
+			company: React.PropTypes.string,
+			position: React.PropTypes.string,
+			date: React.PropTypes.string,
+			description: React.PropTypes.string,
+			featuredProject: React.PropTypes.string
+		},
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: this.props.featuredProject ? "experience-section featured" : "experience-section" },
+				React.createElement(
+					"div",
+					{ className: "experience-section-main" },
+					React.createElement(
+						"h4",
+						null,
+						this.props.company
+					),
+					React.createElement(
+						"h4",
+						{ className: "position-title" },
+						this.props.title
+					),
+					React.createElement(
+						"h5",
+						null,
+						this.props.date
+					),
+					React.createElement("p", { dangerouslySetInnerHTML: { __html: this.props.description } })
+				),
+				this.props.featuredProject && React.createElement(
+					"div",
+					{ className: "experience-section-featured" },
+					React.createElement(
+						"h4",
+						null,
+						"Featured Project"
+					),
+					React.createElement("p", { dangerouslySetInnerHTML: { __html: this.props.featuredProject } })
+				)
+			);
+		}
+	});
+
+	module.exports = ExperienceBlock;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Coffee = __webpack_require__(213);
+
+	var Skill = React.createClass({
+		displayName: 'Skill',
+
+		propType: {
+			title: React.PropTypes.string,
+			level: React.PropTypes.number
+		},
+		createArrFromNum: function createArrFromNum(num) {
+			return Array.apply(null, Array(num)).map(function (_, i) {
+				return i;
+			});
+		},
+		levels: function levels(levelNum, shaded) {
+			var levelArray = this.createArrFromNum(levelNum);
+			return levelArray.map(function (key, index) {
+				return React.createElement(Coffee, { shaded: shaded });
+			});
+		},
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'skill-wrapper' },
+				React.createElement(
+					'div',
+					{ className: 'skill-title' },
+					this.props.title
+				),
+				React.createElement(
+					'div',
+					{ className: 'skill-java-wrapper' },
+					this.props.level && this.levels(this.props.level, true),
+					this.props.level && this.levels(6 - this.props.level, false)
+				)
+			);
+		}
+	});
+
+	module.exports = Skill;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var Coffee = React.createClass({
+		displayName: 'Coffee',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: this.props.shaded ? 'coffee-svg-wrapper' : 'coffee-svg-wrapper unshaded' },
+				React.createElement(
+					'svg',
+					{ version: '1.1', id: 'Layer_1', xmlns: 'http://www.w3.org/2000/svg', x: '0px', y: '0px',
+						width: '512px', height: '512px', viewBox: '0 0 512 512', 'enable-background': 'new 0 0 512 512' },
+					React.createElement(
+						'defs',
+						null,
+						React.createElement(
+							'clipPath',
+							{ id: 'circle-clip' },
+							React.createElement('path', { className: 'clip',
+								d: 'M423.555,221.188c0.033-2.533,0.049-5.076,0.049-7.626c0-30.532-93.227-55.284-208.225-55.284 c-114.997,0-208.224,24.752-208.224,55.284C7.156,378.385,73.546,512,215.379,512c83.412,0,140.723-46.225,173.787-117.818 c3.339,0.271,6.699,0.457,10.119,0.457c58.297,0,105.56-39.355,105.56-87.904C504.844,265.143,470.153,230.321,423.555,221.188z M349.141,235.972c-36.689,8.652-84.195,13.417-133.762,13.417c-49.565,0-97.07-4.765-133.76-13.417 c-35.822-8.448-50.376-18.136-54.252-22.411c3.876-4.275,18.431-13.961,54.252-22.409c36.688-8.653,84.192-13.419,133.76-13.419 c49.564,0,97.07,4.767,133.762,13.419c35.822,8.448,50.377,18.134,54.254,22.409C399.518,217.836,384.963,227.523,349.141,235.972z M398.268,372.213c12.537-33.865,20.354-72.3,23.6-113.514c30.5,6.246,48.42,28.615,48.42,51.395 C470.284,339.477,448.723,368.814,398.268,372.213z' })
+						)
+					),
+					React.createElement(
+						'g',
+						{ clipPath: 'url(#circle-clip)' },
+						React.createElement('rect', { className: 'empty-java', x: '0', y: '0', width: '512', height: '512' })
+					),
+					React.createElement(
+						'g',
+						{ clipPath: 'url(#circle-clip)' },
+						React.createElement('rect', { className: 'java', x: '0', y: '100%', width: '512', height: '512' })
+					)
+				)
+			);
+		}
+	});
+
+	module.exports = Coffee;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Skill = __webpack_require__(212);
 
 	var Skills = React.createClass({
 		displayName: 'Skills',
@@ -24243,23 +24287,19 @@
 						'h3',
 						null,
 						'Skills'
-					),
-					React.createElement('div', {
-						className: 'entypo-minus toggle-button',
-						onClick: this.collapseSkills
-					})
+					)
 				),
 				React.createElement(
 					'div',
 					{ className: 'sidebar-skill-list-wrapper' },
 					React.createElement(Skill, { level: 5, title: 'jQuery' }),
-					React.createElement(Skill, { level: 2, title: 'AngularJs' }),
-					React.createElement(Skill, { level: 4, title: 'Javascript' }),
-					React.createElement(Skill, { level: 1, title: 'ReactJs' }),
-					React.createElement(Skill, { level: 5, title: 'Ruby' }),
-					React.createElement(Skill, { level: 3, title: 'CSS3' }),
-					React.createElement(Skill, { level: 5, title: 'HTML5' }),
-					React.createElement(Skill, { level: 5, title: 'Adobe CS' })
+					React.createElement(Skill, { key: Math.random() * 3, level: 2, title: 'AngularJs' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 4, title: 'Javascript' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 1, title: 'ReactJs' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 5, title: 'Ruby' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 3, title: 'CSS3' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 5, title: 'HTML5' }),
+					React.createElement(Skill, { key: Math.random() * 3, level: 5, title: 'Adobe CS' })
 				)
 			);
 		}
@@ -24268,7 +24308,7 @@
 	module.exports = Skills;
 
 /***/ },
-/* 211 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24329,7 +24369,7 @@
 	module.exports = Contact;
 
 /***/ },
-/* 212 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24375,7 +24415,7 @@
 	module.exports = Education;
 
 /***/ },
-/* 213 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24403,6 +24443,66 @@
 	});
 
 	module.exports = Recognition;
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Header = __webpack_require__(207);
+	var Body = __webpack_require__(208);
+
+	var Print = module.exports = React.createClass({
+		displayName: 'exports',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'print-resume-wrapper' },
+				React.createElement(Header, null),
+				React.createElement(Body, null)
+			);
+		}
+	});
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var _require = __webpack_require__(157);
+
+	var Link = _require.Link;
+
+	var Navigation = React.createClass({
+		displayName: 'Navigation',
+
+		render: function render() {
+			return React.createElement(
+				'ul',
+				{ className: 'resume-navigation' },
+				React.createElement(
+					Link,
+					{ to: 'experience' },
+					React.createElement('li', { 'data-section': 'Experience' })
+				),
+				React.createElement(
+					Link,
+					{ to: 'skills' },
+					React.createElement('li', { 'data-section': 'Skills' })
+				),
+				React.createElement('li', { 'data-section': 'Recognition' }),
+				React.createElement('li', { 'data-section': 'Portfolio' })
+			);
+		}
+	});
+
+	module.exports = Navigation;
 
 /***/ }
 /******/ ]);

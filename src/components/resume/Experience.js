@@ -6,6 +6,7 @@ let Experience = React.createClass({
 		return (
 			<div className="experience-wrapper">
 				<h3>Experience</h3>
+				<div className="experience-block-wrapper">
 				<ExperienceBlock
 						company="Brooklyn United"
 						title="Web Developer"
@@ -83,6 +84,7 @@ let Experience = React.createClass({
 							Built out basic page layouts for the
 							new site using HTML and CSS."
 					/>
+				</div>
 			</div>
 		);
 	}
