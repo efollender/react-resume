@@ -8,6 +8,7 @@ let Header = React.createClass({
 					<h1>Emma Follender</h1>
 					<div className="header-title-separator"></div>
 					<h2>Front-end Developer</h2>
+					<div className="entypo-right-circled"></div>
 				</div>
 			</div>
 		);

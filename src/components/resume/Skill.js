@@ -12,15 +12,15 @@ let Skill = React.createClass({
 	levels(levelNum, shaded){
 		let levelArray = this.createArrFromNum(levelNum);
 		return levelArray.map(function(key, index){
-			return <Coffee shaded={shaded} />
+			return <Coffee key={Math.random()*3} shaded={shaded} />
 		});
 	},
 	render(){
 		return (
-			<div className={"skill-wrapper"}>
-				<div className="skill-title">
+			<div className={"skill-wrapper"} onClick={this.props.onClick}>
+				{/*<div className="skill-title">
 					{this.props.title}
-				</div>
+				</div>*/}
 				<div className="skill-java-wrapper">
 					{this.props.level && 
 						this.levels(this.props.level, true)

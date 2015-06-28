@@ -27,6 +27,7 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
+    "classnames": "^2.1.2",
     "events": "^1.0.2",
     "jquery": "^2.1.4",
     "react": "^0.13.3",

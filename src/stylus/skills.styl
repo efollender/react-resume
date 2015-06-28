@@ -1,5 +1,15 @@
 .sidebar-skills
 	@extend $fullscreen
+.skill-title
+	display inline-block
+	color darken(red, 10)
+	margin 0 .5em
+	cursor pointer
+	transition all .2s ease-in-out
+	font-family $sans-font
+	&.active
+		color white
+		transition all .2s ease-in-out
 .skill-wrapper
 	position absolute
 	left 0
@@ -8,7 +18,6 @@
 .skill-java-wrapper
 	width 50%
 	display inline-block
-	// @media all and (max-width:$break3)
 	@media all and (max-width:$break4)
 		padding 0 .25em
 		width 100%
@@ -18,20 +27,21 @@
 	svg
 		height 100%
 		width 100%
-		// @media all and (max-width:$break4)
-		// 	fill rgba($shade2, .3)
 	.empty-java
 		fill rgba($shade2, .3)
+	//Hide filled cup
 	&.unshaded
 		.java
 			display none
+//Stagger coffe fill animation
 for n in (1..6)
 	.coffee-svg-wrapper:nth-child({n})
 		.java, .empty-java
 			animation-delay unit(n/2,'s')
+//Set animation for filled cups
 .java
 	fill white
-	animation slide 3s forwards
+	animation slide 1s forwards
 @keyframes slide 
 	from
 		y 100%

@@ -1,4 +1,5 @@
 const React = require('react');
+const classNames = require('classnames');
 
 let ExperienceBlock = React.createClass({
 	propTypes: {
@@ -10,7 +11,8 @@ let ExperienceBlock = React.createClass({
 	},
 	render(){
 		return (
-			<div className={this.props.featuredProject ? "experience-section featured" : "experience-section"}>
+			<div className={classNames({'featured': this.props.featuredProject}, "experience-section", {"active-block":this.props.isActive})}
+				onClick={this.props.onClick}>
 				<div className="experience-section-main">
 					<h4>{this.props.company}</h4>
 					<h4 className="position-title">{this.props.title}</h4>

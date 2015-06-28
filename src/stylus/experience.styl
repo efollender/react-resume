@@ -2,12 +2,33 @@
 	.experience-wrapper
 		@extend $fullscreen
 		font-size 1.1rem
-	.experience-section
-		width 25%
-		padding 2em
+		+below(890px)
+			font-size .9rem
+		&.above
+			z-index 2
+	.experience-block-wrapper
+		width 100%
 		display inline-block
 		position relative
-		transition all .1s linear
+		padding-top 25%
+		transition all .4s .5s ease-in-out
+		&.no-relative
+			position static
+	for n in (1..4)
+		.experience-section:nth-child({n})
+			+above(500px)
+				left 25*(n - 1)%
+	.experience-section
+		width 25%
+		// height 0
+		// padding-top 25%
+		padding 1em
+		overflow hidden
+		display inline-block
+		position absolute
+		top 0
+		transition top .5s ease-in-out
+		transition left .5s ease-in-out
 		.position-title
 			transition all .2s ease-in-out
 		&:before
@@ -41,8 +62,41 @@
 			&:after
 				bottom 1em
 				opacity 1
+		&.active-block
+			top: 0
+			z-index: 2
+			position: absolute
+			left: 0!important 
 	.experience-section-main
+		// position absolute 
+		// top 0
 		p
 			display none
 	.experience-section-featured
 		display none
+	//fullscreen experience modal
+	.expanded-experience
+		display: flex
+		align-items center
+		position: absolute
+		transition all .5s ease-in-out
+		background lighten(red, 15)
+		opacity 0
+		z-index: 0
+		top 0
+		left 0
+		right 0 
+		bottom 0
+		&.open
+			transition all .5s ease-in-out
+			z-index 2
+			opacity 1
+			.expanded-experience-description
+				opacity 1
+	.expanded-experience-description
+		padding 2em
+		line-height 1.1
+		margin-left 25%
+		opacity 0
+		transition opacity .5s .5s ease-in-out
+		
