@@ -12,8 +12,8 @@
 		position relative
 		padding-top 25%
 		transition all .4s .5s ease-in-out
-		&.no-relative
-			position static
+		// &.no-relative
+		// 	position static
 	for n in (1..4)
 		.experience-section:nth-child({n})
 			+above(500px)
@@ -54,8 +54,6 @@
 			bottom -1em
 			opacity 0
 		&:hover
-			.position-title
-				color #fff
 			&:before
 				top 1em
 				opacity 1
@@ -67,6 +65,9 @@
 			z-index: 2
 			position: absolute
 			left: 0!important 
+			background white
+			margin-top -2rem
+			color lighten(red, 15)
 	.experience-section-main
 		// position absolute 
 		// top 0
@@ -96,7 +97,8 @@
 	.expanded-experience-description
 		padding 2em
 		line-height 1.1
-		margin-left 25%
+		margin-left 28%
+		max-width 70%
 		opacity 0
 		transition opacity .5s .5s ease-in-out
 		

@@ -92,6 +92,11 @@ let Experience = React.createClass({
 			open: true
 		});
 	},
+	closeModal(){
+		this.setState({
+			open: false
+		});
+	},
 	render(){
 		return (
 			<div className={classNames("experience-wrapper", {"above":this.state.open})}>
@@ -99,6 +104,7 @@ let Experience = React.createClass({
 				<div className={classNames("expanded-experience", {'open':this.state.open})}>
 					{this.state.activeBlock && 
 						<div className="expanded-experience-description">
+						<div onClick={this.closeModal} className="entypo-close">close</div>
 						<p dangerouslySetInnerHTML={{__html: this.state.activeBlock.description}}/>
 						</div>
 					}
@@ -109,7 +115,7 @@ let Experience = React.createClass({
 					this.state.experience.map((el,index) => {
 						return (
 							<ExperienceBlock
-								isActive={this.state.activeBlock == el}
+								isActive={this.state.activeBlock == el && this.state.open}
 								onClick={this.setActive.bind(this, index)}
 								key={index}
 								company={el.company}
